@@ -16,3 +16,7 @@ npm install
 firebase deploy
 ```
 
+### CORS Settings
+```bash
+gsutil cors set cors.json gs://meeting-reaction.appspot.com
+```
