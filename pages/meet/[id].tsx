@@ -17,6 +17,34 @@ async function downloadAndPlayLocal(ref: firebase.storage.Reference) {
   audio.play();
 }
 
+type PlayButtonProps = {
+  id: string;
+  ref: firebase.storage.Reference;
+};
+
+const PlayButton = (props: PlayButtonProps) => {
+  return (
+    <>
+    <button
+      className="play"
+      onClick={() => {
+        playRemote(props.id, props.ref);
+      }}
+    >
+      <img src="/play_arrow-24px.svg" alt="Play" /><br/>
+      <span>Click to play</span>
+      <style jsx>{`
+      img {
+        width: 6rem;
+        height: 6rem;
+      }
+      `}</style>
+
+    </button><br/>
+    </>
+  );
+}
+
 export default function Meet() {
   const router = useRouter();
   const id: string = router.query.id as string;
@@ -52,8 +80,8 @@ export default function Meet() {
           commonFiles.map(x => (
             <li key={x.name}>
               Name: {x.name}<br/>
-              <button onClick={ () => { playRemote(id, x)}}>Click to play</button>
-              <button onClick={ () => { downloadAndPlayLocal(x)}}>Try it on local</button>
+              <PlayButton id={id} ref={x}/>
+              <button className="try" onClick={ () => { downloadAndPlayLocal(x)}}>Try it on local</button>
             </li>
           ))
         }
@@ -82,8 +110,8 @@ export default function Meet() {
           files.map(x => (
             <li key={x.name}>
               Name: {x.name}<br/>
-              <button onClick={ () => { playRemote(id, x)}}>Click to play</button>
-              <button onClick={ () => { downloadAndPlayLocal(x)}}>Try it on local</button>
+              <PlayButton id={id} ref={x}/>
+              <button className="trye" onClick={ () => { downloadAndPlayLocal(x)}}>Try it on local</button>
             </li>
           ))
         }
@@ -92,11 +120,19 @@ export default function Meet() {
       .container {
         margin: 0 2rem;
       }
+      ul {
+        max-width: 100%;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+      }
       li {
         margin-top: 1rem;
+        padding: 1rem;
+        width: 6rem;
       }
       button {
-        margin-right: 0.5rem;
+        margin-left: 0.5rem;
       }
       `}</style>
 
