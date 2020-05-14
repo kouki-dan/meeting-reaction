@@ -88,6 +88,18 @@ export default function Meet() {
           ))
         }
       </ul>
+      <style jsx>{`
+      .container {
+        margin: 0 2rem;
+      }
+      li {
+        margin-top: 1rem;
+      }
+      button {
+        margin-right: 0.5rem;
+      }
+      `}</style>
+
     </div>
   );
 }
