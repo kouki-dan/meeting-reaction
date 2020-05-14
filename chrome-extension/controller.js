@@ -33,7 +33,7 @@ const initializeFirebase = () => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
           const fullPath = change.doc.data().fullPath;
-          if (`/${fullPath}`.startsWith(location.pathname) || fullPath.startsWith("common")) {
+          if (fullPath.startsWith(`meet${location.pathname}`) || fullPath.startsWith("common")) {
             // Ignore invalid path
             const storage = meetingReactionFirebase.storage();
             const storageRef = storage.ref(fullPath);
