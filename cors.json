@@ -1,0 +1,7 @@
+[{
+  "origin": ["https://meet.google.com/"],
+  "responseHeader": ["*"],
+  "method": ["GET"],
+  "maxAgeSeconds": 86400
+}]
+
