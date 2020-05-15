@@ -14,7 +14,10 @@ const loadBuffer = async (fileUrl) => {
 const loadFileAndPlay = async (fileUrl) => {
   const source = audioContext.createBufferSource();
   source.buffer = await loadBuffer(fileUrl);
-  source.connect(audioDestination);
+  const gainNode = audioContext.createGain();
+  gainNode.gain.value = 0.2;
+  gainNode.connect(audioDestination);
+  source.connect(gainNode);
   source.start();
 }
 
