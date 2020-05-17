@@ -15,12 +15,19 @@ class MyApp extends App<{}, {}, State>  {
   }
 
   componentDidMount() {
-    fetch("/__/firebase/init.json").then(async response => {
-      firebase.initializeApp(await response.json());
+    if (process.env.NEXT_PUBLIC_FIREBASE_JSON) {
+      firebase.initializeApp(JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_JSON));
       this.setState({
-        firebaseInitialized: true
+        firebaseInitialized: true,
       });
-    });
+    } else {
+      fetch("/__/firebase/init.json").then(async (response) => {
+        firebase.initializeApp(await response.json());
+        this.setState({
+          firebaseInitialized: true,
+        });
+      });
+    }
   }
 
   render() {
