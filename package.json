@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev:update-firebase.json": "next-page-to-firebase-rewrite-rule --watch",
     "dev:hosting": "firebase serve --only hosting",
     "dev:next": "next dev",
     "dev": "run-p dev:*",
@@ -11,6 +12,7 @@
     "export": "next export"
   },
   "dependencies": {
+    "@kouki-dan/next-page-to-firebase-rewrite-rule": "^1.2.0",
     "firebase": "^7.14.2",
     "next": "9.3.6",
     "react": "16.13.1",
